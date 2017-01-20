@@ -23,6 +23,31 @@ public class UsersController {
 	@Autowired
 	private UsersService usersService;
 	
+	// "/users/private/update.do" 개인정보 수정 요청처리
+	@RequestMapping("/users/private/update")
+	public ModelAndView update(@ModelAttribute UsersDto dto, HttpServletRequest request){
+		usersService.update(dto);
+		ModelAndView mView = new ModelAndView();
+		String path = request.getContextPath()+"/users/private/info.do";
+		mView.addObject("msg", dto.getId()+" 님 회원정보 수정 했습니다.");
+		mView.addObject("redirectUri", path);
+		mView.setViewName("users/alert");
+		return mView;
+	}
+	
+	// "/users/private/updateform.do" 개인정보 수정 폼 요청처리
+	@RequestMapping("/users/private/updateform")
+	public ModelAndView updateform(HttpSession session){
+		//1. 세션에서 아이디 정보를 읽어온다.
+		String id = (String)session.getAttribute("id");
+		//2. 수정할 회원의 정보를 담고 있는 ModelAndView 개게를 얻어온다.
+		ModelAndView mView = usersService.getData(id);
+		//3. forword 이동할 정보를 담아서
+		mView.setViewName("users/private/updateform");
+		//4. 리턴
+		return mView;
+	}
+	
 	// "/users/private/info.do" 개인정보 보기 요청 처리
 	@RequestMapping("/users/private/info.do")
 	public ModelAndView info(HttpSession session){
