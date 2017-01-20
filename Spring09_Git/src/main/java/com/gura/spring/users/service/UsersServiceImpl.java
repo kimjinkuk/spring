@@ -1,5 +1,8 @@
 package com.gura.spring.users.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
@@ -38,9 +41,11 @@ public class UsersServiceImpl implements UsersService{
 	}
 
 	@Override
-	public ModelAndView canUseId(String id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Map<String, Object> canUseId(String id) {
+		boolean canUse = usersDao.canUseId(id);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("canUse", canUse);
+		return map;
 	}
 
 }
