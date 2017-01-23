@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 // /users/pritvate/하위의 모든 요청에 대해서 이 Filter가 동작하도록
-@WebFilter("/users/private/*")
+@WebFilter({"/users/private/*", "/cafe/private/*"})
 public class LoginFilter implements Filter {
 
 	@Override
