@@ -16,13 +16,13 @@ public class CafeDaoImpl implements CafeDao{
 
 	@Override
 	public void increaseViewCount(int num) {
-		// TODO Auto-generated method stub
+		session.update("cafe.increaseViewCount", num);
 		
 	}
 
 	@Override
 	public void insert(CafeDto dto) {
-		// TODO Auto-generated method stub
+		session.insert("cafe.insert", dto);
 		
 	}
 
@@ -40,8 +40,8 @@ public class CafeDaoImpl implements CafeDao{
 
 	@Override
 	public CafeDto getDate(int num) {
-		// TODO Auto-generated method stub
-		return null;
+		CafeDto dto=session.selectOne("cafe.getData", num);
+		return dto;
 	}
 
 	@Override
