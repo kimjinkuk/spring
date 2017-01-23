@@ -12,4 +12,5 @@ public interface CafeService {
 	public void delete(int num);
 	public ModelAndView getData(int num);
 	public ModelAndView getList();
+	public ModelAndView updateForm(int num);
 }

@@ -22,8 +22,7 @@ public class CafeServiceImpl implements CafeService {
 
 	@Override
 	public void update(CafeDto dto) {
-		// TODO Auto-generated method stub
-
+		cafeDao.update(dto);
 	}
 
 	@Override
@@ -52,6 +51,17 @@ public class CafeServiceImpl implements CafeService {
 		ModelAndView mView = new ModelAndView();
 		mView.addObject("lits", list);
 		// 리턴
+		return mView;
+	}
+
+	@Override
+	public ModelAndView updateForm(int num) {
+		//수정할 글정보를 얻어온다. 
+		CafeDto dto=cafeDao.getDate(num);
+		//수정할 글정보를 ModelAndView 객체에 담고 
+		ModelAndView mView=new ModelAndView();
+		mView.addObject("dto", dto);
+		//리턴해준다. 
 		return mView;
 	}
 

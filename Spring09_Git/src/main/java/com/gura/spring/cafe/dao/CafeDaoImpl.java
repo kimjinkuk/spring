@@ -45,7 +45,8 @@ public class CafeDaoImpl implements CafeDao{
 
 	@Override
 	public List<CafeDto> getList() {
-		List<CafeDto> list = session.selectList("cafe.getList");
+
+		List<CafeDto> list=session.selectList("cafe.getList");
 		return list;
 	}
 

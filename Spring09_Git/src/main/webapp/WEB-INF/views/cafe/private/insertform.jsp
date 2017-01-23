@@ -13,6 +13,7 @@
 <body>
 <h3>카페 새글 입력 페이지 입니다.</h3>
 <form action="insert.do" method="post">
+	<input type="hidden" name="writer" value="${id }" />
 	<label for="writer">작성자</label>
 	<input type="text" id="writer" 
 		value="${id }" disabled="disabled"/><br/>
