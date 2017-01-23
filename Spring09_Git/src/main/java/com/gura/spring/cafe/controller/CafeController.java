@@ -15,34 +15,41 @@ public class CafeController {
 
 	@Autowired
 	private CafeService cafeService;
-	
+
 	@RequestMapping("cafe/list")
-	public ModelAndView list(){
-		//글 목록이 담겨 있는 ModelAndView 객체를 리턴 받는다.
+	public ModelAndView list() {
+		// 글 목록이 담겨 있는 ModelAndView 객체를 리턴 받는다.
 		ModelAndView mView = cafeService.getList();
-		//뷰페이지의 정보 설정하고
+		// 뷰페이지의 정보 설정하고
 		mView.setViewName("cafe/list");
-		//리턴
+		// 리턴
 		return mView;
 	}
-	
+
 	@RequestMapping("cafe/private/insertform")
-	public String insertform(){
+	public String insertform() {
 		return "cafe/private/insertform";
 	}
-	
-	//새글 저장 요청 처리 
+
+	// 새글 저장 요청 처리
 	@RequestMapping("/cafe/private/insert")
-	public String insert(@ModelAttribute CafeDto dto){
+	public String insert(@ModelAttribute CafeDto dto) {
 		cafeService.insert(dto);
 		return "redirect:/cafe/list.do";
 	}
-	
+
 	@RequestMapping("/cafe/detail")
-	public ModelAndView detail(@RequestParam int num){
-		ModelAndView mView=cafeService.getData(num);
+	public ModelAndView detail(@RequestParam int num) {
+		ModelAndView mView = cafeService.getData(num);
 		mView.setViewName("cafe/detail");
 		return mView;
 	}
-	
+
+	// 글 삭제 요청 처리
+	@RequestMapping("/cafe/private/delete")
+	public String delete(@RequestParam int num) {
+		cafeService.delete(num);
+		return "redirect:/cafe/list.do";
+	}
+
 }
